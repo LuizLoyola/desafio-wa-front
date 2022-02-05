@@ -51,15 +51,23 @@ const columns: GridColumns = [
 
 let itemCols: GridColumns = [
   {headerName: 'Nome', field: 'name', width: 300},
+  {headerName: 'Quantidade', field: 'quantity', width: 100},
   {
-    headerName: 'Preço',
+    headerName: 'Preço Unitário',
     field: 'price',
     width: 100,
     renderCell: params => {
       return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(params.value);
     }
   },
-  {headerName: 'Quantidade', field: 'quantity', width: 100}
+  {
+    headerName: 'Preço Total',
+    field: 'totalPrice',
+    width: 100,
+    renderCell: params => {
+      return new Intl.NumberFormat('pt-BR', {style: 'currency', currency: 'BRL'}).format(params.row.quantity * params.row.price);
+    }
+  }
 ];
 
 function App() {
